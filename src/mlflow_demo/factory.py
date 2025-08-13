@@ -31,12 +31,17 @@ class BaseFactory:
 
     def train(self, X: pd.DataFrame, y: pd.Series, *args, **kwargs):
         if self.pipeline is None:
-            self.initialize_pipeline()
-        self.target = y.name 
+            raise ValueError("Pipeline is not Created. First Create the pipeline.")
+            # self.initialize_pipeline()
+        # self.target = y.name 
         self.pipeline.fit(X, y, *args, **kwargs)
 
     def predict(self, X: pd.DataFrame, est=None, *args, **kwargs):
         if est is None:
+            # we may get estimator from cross validation,
+            # If we do not get any estimator, we will use default pipeline
+            if self.pipeline is None:
+                raise ValueError('Pipeline is not Created. First create the pipeline and train the model')
             est = self.pipeline
         return est.predict(X, *args, **kwargs)
 
