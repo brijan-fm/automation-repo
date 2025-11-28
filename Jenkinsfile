@@ -5,7 +5,7 @@ pipeline {
     parameters {
         string(name: 'IMAGE_NAME', defaultValue: 'fmanon/nginx', description: 'Docker image name')
         string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'Docker image tag')
-        string(name: 'NGINX_DIR', defaultValue: 'nginx', description: 'Directory containing Dockerfile and HTML')
+        string(name: 'NGINX_DIR', defaultValue: 'deployment/nginx', description: 'Directory containing Dockerfile and HTML')
     }
 
 
